@@ -46,7 +46,7 @@
      (font-descent font)))
 
 (defmethod text-line-width ((font xlib:font) text &rest keys &key (start 0) end translate)
-  (apply 'xlib:text-width font text keys)
+  (apply #'xlib:text-width font text keys)
   )
 
 (defmethod draw-image-glyphs (drawable 
@@ -54,7 +54,7 @@
                               (font xlib:font)
                               x y
                               sequence &rest keys &key (start 0) end translate width size) 
-  (apply 'xlib:draw-image-glyphs drawable 
+  (apply #'xlib:draw-image-glyphs drawable 
          gcontext
          x y
          sequence keys))
@@ -82,7 +82,7 @@
 
 (defmethod text-line-width ((font xft:font) text &rest keys &key (start 0) end translate)
   (declare (ignorable start end translate))
-  (apply 'xft:text-line-width (screen-number (current-screen)) font text
+  (apply #'xft:text-line-width (screen-number (current-screen)) font text
          :allow-other-keys t keys))
 
 (defmethod draw-image-glyphs (drawable 
@@ -91,7 +91,7 @@
                               x y
                               sequence &rest keys &key (start 0) end translate width size)
   (declare (ignorable start end translate width size))
-  (apply 'xft:draw-text-line 
+  (apply #'xft:draw-text-line 
          drawable
          gcontext
          font
